@@ -1,0 +1,17 @@
+frequency: 0.1
+frequency_tolerance: 0.5
+frame_id: example_id
+sensors:
+  -
+    name: temperature_sensor_1
+    address: 28.186CE3080000
+    fields: ['temperature']
+  -
+    name: temperature_sensor_2
+    address: 28.C1BAE3080000
+    fields: ['temperature']
+  -
+    name: multi_sensors_3
+    address: 26.48F813020000
+    fields: ['temperature', 'humidity']
+

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ros_onewire_server</name>
+  <version>1.0.0</version>
+  <description>ros package to read from onewire server and publish to ROS</description>
+
+  <maintainer email="bernd.pfrommer@gmail.com">Bernd Pfrommer</maintainer>
+  <license>Apache</license>
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <depend>rospy</depend>
+  <depend>diagnostic_msgs</depend>
+  <depend>diagnostic_updater</depend>
+  <depend>std_msgs</depend>
+</package>

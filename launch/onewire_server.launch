@@ -1,0 +1,8 @@
+<launch>
+  <arg name="config_file" default="$(find ros_onewire_server)/config/example_config.yaml"/>
+  <node pkg="ros_onewire_server" type="onewire_server.py"
+	        name="onewire_server"
+		clear_params="true" output="screen">
+    <rosparam command="load" file="$(arg config_file)"/>
+  </node>
+</launch>
