@@ -41,9 +41,13 @@ class TemperatureField(Field):
         self.publisher = rospy.Publisher(self.topic, Temperature, queue_size=1)
     def publish(self, info, frameid):
         msg = sensor_msgs.msg.Temperature()
-        msg.temperature = float(info)
+        try:
+            msg.temperature = float(info)
+        except ValueError:
+            rospy.logwarn('got bad temperature!')
+            msg.temperature = 0
         self.pub(msg, frameid)
-        rospy.loginfo('sensor %16s: %-11s = %7.3fC' % (self.hwid, self.name, float(info)))
+        rospy.loginfo('sensor %16s: %-11s = %7.3fC' % (self.hwid, self.name, msg.temperature))
 
 
 class RelativeHumidityField(Field):
@@ -52,9 +56,12 @@ class RelativeHumidityField(Field):
         self.publisher = rospy.Publisher(self.topic, RelativeHumidity, queue_size=1)
     def publish(self, info, frameid):
         msg = sensor_msgs.msg.RelativeHumidity()
-        msg.relative_humidity = float(info)
+        try:
+            msg.relative_humidity = float(info)
+        except  ValueError:
+            msg.relative_humidity = 0
         self.pub(msg, frameid)
-        rospy.loginfo('sensor %16s: %-11s = %7.3f%%' % (self.hwid, self.name, float(info)))
+        rospy.loginfo('sensor %16s: %-11s = %7.3f%%' % (self.hwid, self.name, msg.relative_humidity))
         
 class Sensor():
     def __init__(self, hwid, fields, freq, freq_tol, updater):
